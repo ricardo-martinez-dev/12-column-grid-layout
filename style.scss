@@ -1,0 +1,64 @@
+// Variables
+$screen-xs: 575px;
+$screen-sm: 576px;
+$screen-md: 768px;
+$screen-lg: 992px;
+$screen-xl: 1200px;
+
+@mixin generate-columns($class-name, $num-columns) {
+  @for $i from 1 through $num-columns {
+    .#{$class-name}-#{$i} {
+      width: calc(100% / #{$num-columns} * #{$i});
+    }
+  }
+}
+
+.row {
+  margin: 0 auto;
+  max-width: 100%;
+}
+
+[class*="col-"],
+[class*="row-"] {
+  -moz-box-sizing: border-box;
+  -ms-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+[class*="col-"] {
+  display: inline;
+  float: left;
+  padding: 0.3em; // the size of the gap between columns
+  position: relative;
+}
+
+// All screen sizes
+@include generate-columns("col", 12);
+
+// Extra small screen size
+@media (max-width: $screen-xs) {
+  @include generate-columns("xs-col", 12);
+}
+
+// Small screen size
+@media (min-width: $screen-sm) {
+  @include generate-columns("sm-col", 12);
+}
+
+// Medium screen size
+@media (min-width: $screen-md) {
+  @include generate-columns("md-col", 12);
+}
+
+// Large screen size
+@media (min-width: $screen-lg) {
+  @include generate-columns("lg-col", 12);
+}
+
+// Extra large screen size
+@media (min-width: $screen-xl) {
+  @include generate-columns("xl-col", 12);
+}
